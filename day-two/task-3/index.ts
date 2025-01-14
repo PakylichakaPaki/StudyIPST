@@ -1,19 +1,31 @@
-function indexOf(str: string, substr: string): number {
-    if (substr === '') return 0;
-    if (substr.length > str.length) return -1;
-
-    for (let i = 0; i <= str.length - substr.length; i++) {
-        let match = true;
-        for (let j = 0; j < substr.length; j++) {
-            if (str[i + j] !== substr[j]) {
-                match = false;
-                break;
-            }
-        }
-        if (match) return i;
-    }
-    return -1;
+type Book = {
+    title: string;
+    year: number;
+    author: string;
+    preview: string;
+    url: string;
 }
-console.log(indexOf("hello world", "world"));
-console.log(indexOf("hello world", "xyz"));
-console.log(indexOf("hello world", ""));
+
+// Функция для создания объекта книги
+const createBook = (title: string, year: number, author: string): Book => {
+    const preview = `Название: ${title}, Автор: ${author}, Год: ${year}`;
+    const url = `www.someurl.com/preview?title=${encodeURIComponent(title)}&year=${year}&author=${encodeURIComponent(author)}`;
+  
+    return {
+      title,
+      year,
+      author,
+      preview,
+      url,
+    };
+  };
+  
+  const source = {
+    title: "Harry Potter",
+    year: 1997,
+    author: "J.K. Rowling",
+  };
+  
+  const target = createBook(source.title, source.year, source.author);
+  
+  console.log(target);
